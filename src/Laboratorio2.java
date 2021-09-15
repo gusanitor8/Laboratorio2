@@ -8,17 +8,21 @@ public class Laboratorio2 {
         while(condition){
             switch(Vista.menuDeOpciones()){
                 case 1:
-                    System.out.println("Ingresaste la opcion 1 \n\n");
+                    Programa programa = new Programa(Vista.newProgramStrings(), Vista.newProgramInts());
+                    ProgramQueue.addProgram(programa);
+                    queueToRAM();
                     break;
                 case 2:
-                    Vista.viewBlocks(ram);
+                    Vista.viewBlocks(ram.getBlocks().length);
                     break;
                 case 3:
-                    Vista.viewBlocksAvailable(ram);
+                    Vista.viewBlocksAvailable(ram.blocksAvailable());
                     break;
                 case 4:
-                    Vista.viewBlocksUsed(ram);
+                    Vista.viewBlocksUsed(ram.blocksUsed());
                     break;
+                case 5:
+
                 case 9:
                     condition = false;
                     break;
@@ -44,6 +48,17 @@ public class Laboratorio2 {
                     break;
                 default:
                     Vista.notAnOption();
+            }
+        }
+    }
+
+    public static void queueToRAM(){
+        if(ProgramQueue.isFull()) {
+            if (ProgramQueue.getBlocksNeeded() < RAM.blocksAvailable()) {
+                for (int i = 0; i < ProgramQueue.getBlocksNeeded(); i++) {
+                    Bloque bloque = new Bloque(ProgramQueue.getParentName(), ProgramQueue.getParentid());
+                }
+                ProgramQueue.removeFromQueue();
             }
         }
     }

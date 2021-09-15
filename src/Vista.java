@@ -68,31 +68,51 @@ public class Vista {
         return capacity;
     }
 
-    public static void viewBlocksAvailable(RAM ram){
-        int blocksAvailable = 0;
-        for(int i = 0; i < ram.getBlocks().length; i++){
-            if(ram.getBlocks()[i]==null){
-                blocksAvailable += 1;
-            }
-        }
+    public static void viewBlocksAvailable(int blocksAvailable){
         System.out.println("Hay " + blocksAvailable + " bloques de  memoria disponibles.");
     }
 
-    public static void viewBlocksUsed(RAM ram){
-        int blocksUsed = 0;
-        for(int i = 0; i < ram.getBlocks().length; i++){
-            if(ram.getBlocks()[i] != null){
-                blocksUsed += 1;
-            }
-        }
+    public static void viewBlocksUsed(int blocksUsed){
         System.out.println("Hay " + blocksUsed + " bloques de  memoria en uso.");
     }
 
-    public static void viewBlocks(RAM ram){
-        System.out.println("La memoria RAM cuenta con " + ram.getBlocks().length + " bloques de memoria en total.");
+    public static void viewBlocks(int ramLength){
+        System.out.println("La memoria RAM cuenta con " + ramLength + " bloques de memoria en total.");
+    }
+
+    public static int[] newProgramInts(){
+        int[] integers = new int[2];
+
+        try{
+            System.out.println("Ingrese los ciclos de reloj necesarios para completar el proceso: ");
+            integers[0] = input.nextInt();
+            input.nextLine();
+            System.out.println("Ingrese la memoria ocupada por el proceso (en MB): ");
+            integers[1] = input.nextInt();
+            input.nextLine();
+
+        }catch(InputMismatchException e){
+            System.out.println("El dato que usted ingreso no es un numero entero \n Intente de nuevo\n");
+            input.next();
+        }
+        return integers;
+    }
+
+    public static String newProgramStrings(){
+        String strings = null;
+        try{
+            System.out.println("Ingrese el nombre del programa: ");
+            strings = input.nextLine();
+            input.nextLine();
+        }catch(InputMismatchException e){
+            e.printStackTrace();
+        }
+        return strings;
     }
 
     public static void notAnOption(){
         System.out.println("Esta no es una opcion valida, intenta de nuevo");
     }
+
+
 }
