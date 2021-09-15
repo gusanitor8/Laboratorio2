@@ -68,5 +68,31 @@ public class Vista {
         return capacity;
     }
 
+    public static void viewBlocksAvailable(RAM ram){
+        int blocksAvailable = 0;
+        for(int i = 0; i < ram.getBlocks().length; i++){
+            if(ram.getBlocks()[i]==null){
+                blocksAvailable += 1;
+            }
+        }
+        System.out.println("Hay " + blocksAvailable + " bloques de  memoria disponibles.");
+    }
 
+    public static void viewBlocksUsed(RAM ram){
+        int blocksUsed = 0;
+        for(int i = 0; i < ram.getBlocks().length; i++){
+            if(ram.getBlocks()[i] != null){
+                blocksUsed += 1;
+            }
+        }
+        System.out.println("Hay " + blocksUsed + " bloques de  memoria en uso.");
+    }
+
+    public static void viewBlocks(RAM ram){
+        System.out.println("La memoria RAM cuenta con " + ram.getBlocks().length + " bloques de memoria en total.");
+    }
+
+    public static void notAnOption(){
+        System.out.println("Esta no es una opcion valida, intenta de nuevo");
+    }
 }

@@ -1,4 +1,6 @@
 public class Laboratorio2 {
+    static RAM ram;
+
     public static void main(String[] args){
         init();
 
@@ -8,11 +10,20 @@ public class Laboratorio2 {
                 case 1:
                     System.out.println("Ingresaste la opcion 1 \n\n");
                     break;
+                case 2:
+                    Vista.viewBlocks(ram);
+                    break;
+                case 3:
+                    Vista.viewBlocksAvailable(ram);
+                    break;
+                case 4:
+                    Vista.viewBlocksUsed(ram);
+                    break;
                 case 9:
                     condition = false;
                     break;
                 default:
-                    System.out.println("Esa opcion no es valida intenta de nuevo");
+                    Vista.notAnOption();
                     break;
             }
         }
@@ -24,14 +35,15 @@ public class Laboratorio2 {
         while(condicion){
             switch (Vista.choseRAM()){
                 case 1:
-                    System.out.println("eligio " + Vista.choseSDR() + "gb");
+                    ram = new RAM(Vista.choseSDR(), 1);
                     condicion = false;
                     break;
                 case 2:
+                    ram = new RAM();
                     condicion = false;
                     break;
                 default:
-                    System.out.println("Por favor elija una  de las opciones");
+                    Vista.notAnOption();
             }
         }
     }
