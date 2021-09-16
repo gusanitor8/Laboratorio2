@@ -1,3 +1,4 @@
+import java.util.NoSuchElementException;
 import java.util.Scanner;
 import java.util.InputMismatchException;
 
@@ -30,7 +31,8 @@ public class Vista {
                             "6. Ver programas en cola\n" +
                             "7. Ver los espacios de un programa en particular \n" +
                             "8. Ver estado de la memoria \n" +
-                            "9. Salir");
+                            "9. Hacer ciclo de reloj \n" +
+                            "10. Salir");
 
         int option = 0;
         try{
@@ -64,7 +66,6 @@ public class Vista {
             System.out.println("El numero que usted ingreso no esta dentro de las opciones");
             capacity = choseSDR();
         }
-        //System.out.println("Usted eligio " + capacity + "gb");
         return capacity;
     }
 
@@ -102,8 +103,9 @@ public class Vista {
         String strings = null;
         try{
             System.out.println("Ingrese el nombre del programa: ");
-            strings = input.nextLine();
             input.nextLine();
+            strings = input.nextLine();
+
         }catch(InputMismatchException e){
             e.printStackTrace();
         }
@@ -112,6 +114,40 @@ public class Vista {
 
     public static void notAnOption(){
         System.out.println("Esta no es una opcion valida, intenta de nuevo");
+    }
+
+    public static void programsInUse(String[] programsInUse){
+        System.out.println("Los programas en ejecucion son: ");
+        for(int i = 0; i < programsInUse.length; i++){
+            System.out.println((i+1) + ". " +programsInUse[i]);
+        }
+        System.out.println("\n");
+    }
+
+    public static void programsInQueue(String[] programsInQueue){
+        System.out.println("Los programas en la cola son: ");
+        for(int i = 0; i < programsInQueue.length; i++){
+            System.out.println((i+1)+ ". " + programsInQueue[i]);
+        }
+        System.out.println("\n");
+    }
+
+    public static String askProgramInfo(){
+        String program = null;
+        try{
+            input.nextLine();
+            program = input.nextLine();
+            System.out.println("El programa es: " + program);
+        }catch(NoSuchElementException e){
+            e.printStackTrace();
+        }catch(IllegalStateException e){
+            e.printStackTrace();
+        }
+        return program;
+    }
+
+    public static void viewProgramInfo(int blocksUsed){
+        System.out.println("El programa esta usando "+ blocksUsed + "bloques de memoria. \n");
     }
 
 

@@ -43,7 +43,7 @@ public class RAM {
 
     public static String[] programsInUse(){
         ArrayList<String> programsInUse = new ArrayList<String>();
-        for(int i = 0; i  < blocks.length; i++){
+        for(int i = 0; i < blocksUsed(); i++){
             if(programsInUse.contains(blocks[i].getName())==false){
                 programsInUse.add(blocks[i].getName());
             }
@@ -51,4 +51,39 @@ public class RAM {
         return programsInUse.toArray(new String[0]);
     }
 
+    public static void addBlock(Bloque bloque){
+        boolean condicion = true;
+        int i = 0;
+        while(condicion){
+            if(blocks[i] == null){
+                blocks[i] = bloque;
+                condicion = false;
+            }
+            i++;
+        }
+    }
+
+    public static int usedByProgram(String program){
+        int usedByProgram = 0;
+        for(int i = 0; i < blocks.length; i++){
+            if(blocks[i]!=null){
+                if(blocks[i].getName().equals(program)){
+                    usedByProgram++;
+                }
+            }
+        }
+        return usedByProgram;
+    }
+
+    public static void doClockCycle(){
+        for(int i = 0; i < blocks.length; i++){
+            if(blocks[i]!=null){
+                if(blocks[i].getClockCycles()>0) {
+                    blocks[i].setClockCycles(blocks[i].getClockCycles() - 1);
+                }else{
+                    blocks[i] = null;
+                }
+            }
+        }
+    }
 }

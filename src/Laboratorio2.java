@@ -22,8 +22,23 @@ public class Laboratorio2 {
                     Vista.viewBlocksUsed(ram.blocksUsed());
                     break;
                 case 5:
-
+                    Vista.programsInUse(RAM.programsInUse());
+                    break;
+                case 6:
+                    Vista.programsInQueue(ProgramQueue.programsInQueue());
+                    break;
+                case 7:
+                    Vista.viewProgramInfo(RAM.usedByProgram(Vista.askProgramInfo()));
+                    break;
+                case 8:
+                    Vista.viewBlocksAvailable(ram.blocksAvailable());
+                    Vista.viewBlocksUsed(ram.blocksUsed());
+                    break;
                 case 9:
+                    RAM.doClockCycle();
+                    queueToRAM();
+                    break;
+                case 10:
                     condition = false;
                     break;
                 default:
@@ -53,10 +68,11 @@ public class Laboratorio2 {
     }
 
     public static void queueToRAM(){
-        if(ProgramQueue.isFull()) {
-            if (ProgramQueue.getBlocksNeeded() < RAM.blocksAvailable()) {
+        if(ProgramQueue.queueIsFull()) {
+            if (ProgramQueue.getBlocksNeeded() <= RAM.blocksAvailable()) {
                 for (int i = 0; i < ProgramQueue.getBlocksNeeded(); i++) {
-                    Bloque bloque = new Bloque(ProgramQueue.getParentName(), ProgramQueue.getParentid());
+                    Bloque bloque = new Bloque(ProgramQueue.getParentName(), ProgramQueue.getParentid(), ProgramQueue.getClockCycles());
+                    RAM.addBlock(bloque);
                 }
                 ProgramQueue.removeFromQueue();
             }

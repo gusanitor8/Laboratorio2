@@ -1,5 +1,6 @@
 import java.util.LinkedList;
 import java.util.Queue;
+import java.util.ArrayList;
 
 public class ProgramQueue {
     private static Queue<Programa> queue = new LinkedList<Programa>();
@@ -10,7 +11,7 @@ public class ProgramQueue {
         System.out.println("El programa ha sido agregado");
     }
 
-    public static boolean isFull(){
+    public static boolean queueIsFull(){
         boolean isFull = false;
         if (queue.peek() != null){
             isFull = true;
@@ -30,8 +31,24 @@ public class ProgramQueue {
         return queue.peek().getName();
     }
 
-public static void removeFromQueue(){
+    public static int getClockCycles(){
+        return queue.peek().getClockCycles();
+    }
+
+    public static void removeFromQueue(){
         queue.poll();
+    }
+
+    public static String[] programsInQueue(){
+        ArrayList<String> list = new ArrayList<String>();
+        Queue<Programa> queue2 = new LinkedList<>(queue);
+
+        for(int i = 0; i < queue.size(); i++){
+            if(list.contains(queue2.peek().getName())==false){
+                list.add(queue2.poll().getName());
+            }
+        }
+        return list.toArray(new String[0]);
     }
 }
 
