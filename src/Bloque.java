@@ -3,6 +3,12 @@ public class Bloque {
     String parentId;
     int clockCycles;
 
+    /**
+     * metodo constructor
+     * @param name nombre del programa
+     * @param parentId id del programa
+     * @param clockCycles numero de ciclos de reloj necesarios
+     */
     public Bloque(String name, String parentId, int clockCycles){
         this.name = name;
         this.parentId = parentId;

@@ -5,12 +5,20 @@ import java.util.ArrayList;
 public class ProgramQueue {
     private static Queue<Programa> queue = new LinkedList<Programa>();
 
+    /**
+     * Agrega programa a la cola
+     * @param programa recibe un objeto de la clase Programa
+     */
     public static void addProgram(Programa programa){
         queue.add(programa);
         //InstanceBlocks(programa,blocksToInstance(programa));
         System.out.println("El programa ha sido agregado");
     }
 
+    /**
+     * revisa si hay al menos un programa en la cola
+     * @return devuelve true si hay al menos un programa en la cola
+     */
     public static boolean queueIsFull(){
         boolean isFull = false;
         if (queue.peek() != null){
@@ -39,6 +47,10 @@ public class ProgramQueue {
         queue.poll();
     }
 
+    /**
+     * Indica los programas en la cola
+     * @return devuelve un array con el nombre de los programas en la cola
+     */
     public static String[] programsInQueue(){
         ArrayList<String> list = new ArrayList<String>();
         Queue<Programa> queue2 = new LinkedList<>(queue);

@@ -35,7 +35,7 @@ public class Laboratorio2 {
                     Vista.viewBlocksUsed(ram.blocksUsed());
                     break;
                 case 9:
-                    RAM.doClockCycle();
+                    RAM.doClockCycle(RAM.getType());
                     queueToRAM();
                     break;
                 case 10:
@@ -48,6 +48,10 @@ public class Laboratorio2 {
         }
     }
 
+    /**
+     * El metodo le da al usuario a elejir el tipo de memoria que quiere usar y
+     * pone el programa en las condiciones para ser usado por el usuario
+     */
     public static void init(){
         boolean condicion = true;
 
@@ -67,6 +71,10 @@ public class Laboratorio2 {
         }
     }
 
+    /**
+     * El metodo verifica que haya memoria disponible para pasar los programas de la cola a la memoria, de ser asi
+     * pone los bloques del programa correspondiente en la memoria
+     */
     public static void queueToRAM(){
         if(ProgramQueue.queueIsFull()) {
             if (ProgramQueue.getBlocksNeeded() <= RAM.blocksAvailable()) {
